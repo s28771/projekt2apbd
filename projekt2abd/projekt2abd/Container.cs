@@ -22,7 +22,7 @@ public class Container : IContainer
         SerialNumber = GenerateSerialNumber(containerType);
     }
 
-    public void LoadCargo(double mass)
+    public virtual void LoadCargo(double mass)
     {
         if (mass > MaximumLoadCapacity)
         {
