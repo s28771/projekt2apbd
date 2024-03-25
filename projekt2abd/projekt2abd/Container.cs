@@ -31,7 +31,7 @@ public class Container : IContainer
         CargoMass = mass;
     }
 
-    public void UnloadCargo()
+    public virtual void UnloadCargo()
     {
         CargoMass = 0;
     }
