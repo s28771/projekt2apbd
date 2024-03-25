@@ -1,17 +1,8 @@
 ﻿namespace projekt2abd.Exceptions;
 
-public class OverfillExeption : Exception
+public class OverfillException : Exception
 {
-    public OverfillExeption()
-    {
-    }
-
-    public OverfillExeption(string? message) : base(message)
-    {
-    }
-
-    public OverfillExeption(string? message, Exception? innerException) : base(message, innerException)
-    {
-    }
+    public OverfillException(string message) : base(message) { }
 }
+
 // crl + k + c komentarz

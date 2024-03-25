@@ -1,26 +1,44 @@
-﻿using System.Threading.Tasks.Dataflow;
+﻿
+using projekt2abd.Exceptions;
 
 namespace projekt2abd;
 
 public class Container : IContainer
 {
+    public double CargoMass { get; set; }
+    public int Height { get; set; }
+    public double OwnWeight { get; set; }
+    public int Depth { get; set; }
+    private static int lastNumber = 0;
+    public string SerialNumber { get; private set; } 
+    public double MaximumLoadCapacity { get; set; }
 
-    public double CargoWeight { get; set; }
-    public double Height { get; set; }
-
-    protected Container(double cargoWeight, double height)
+    public Container(int height, double ownWeight, int depth, double maximumLoadCapacity, string containerType)
     {
-        CargoWeight = cargoWeight;
         Height = height;
+        OwnWeight = ownWeight;
+        Depth = depth;
+        MaximumLoadCapacity = maximumLoadCapacity;
+        SerialNumber = GenerateSerialNumber(containerType);
     }
 
-    public void Unload()
+    public void LoadCargo(double mass)
     {
-        throw new NotImplementedException();
+        if (mass > MaximumLoadCapacity)
+        {
+            throw new OverfillException("Cargo mass exceeds the container's maximum load capacity.");
+        }
+        CargoMass = mass;
     }
 
-    public void Load(double cargoWeight)
+    public void UnloadCargo()
     {
-        throw new NotImplementedException();
+        CargoMass = 0;
+    }
+
+    private string GenerateSerialNumber(string type)
+    {
+        lastNumber++;
+        return $"KON-{type}-{lastNumber}";
     }
 }
